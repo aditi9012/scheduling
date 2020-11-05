@@ -7,6 +7,33 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <p id="p1">Scheduling & Animating with Javascript</p>
+        <script src="script.js"></script>
+       
+        <!-- <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn">Select</button>
+            <div id="myDropdown" class="dropdown-content">
+              <a href="#setTimeout">setTimeout</a>
+              <a href="#setInterval">setInterval</a>
+              <a href="#Promise">Promise</a>
+              <a href="#requestAnimationFrame">requestAnimationFrame</a>
+            </div>
+          </div> -->
+
+          <form>
+              Select your choice:
+              <select id="mySelect">
+                  <option value="setTimeout">setTimeout</option>
+                  <option value="setInterval">setInterval</option>
+                  <option value="Promise">Promise</option>
+                  <option value="requestAnimationFrame">requestAnimationFrame</option>
+                  <option value="queueMicrotask">queueMicrotask</option>
+                </select>
+          </form>
+          <button type="button" onclick="myFunction()">Start Demo</button>
+          <p id="demo"></p>
+          
+          
 
     </body>
 </html>

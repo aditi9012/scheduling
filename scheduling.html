@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<style>
+#container {
+  width: 400px;
+  height: 400px;
+  position: relative;
+  background: #839192;
+  margin-left: 400px;
+}
+#animate {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-color:#EC7063;
+  
+}
+#animate1 {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-color:lightgreen;
+  margin-left:80px;
+}
+#animate2 {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-color:lightblue;
+  margin-left:150px;
+}
+
+#animate3 {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-color:pink;
+  margin-left:230px;
+}
+#animate4 {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-color:#F39C12;
+  margin-left:300px;
+}
+
+#p1{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font: outline;
+    font-weight: bold;
+    font-style: oblique;
+    font-size: 48px;
+    color: orange;
+    text-align: center;
+}
+
+#left{
+  margin-left: 400px;
+}
+body{
+    background-image:url('bg.jpg');
+}
+</style>
+<body>
+      <p id="p1">Scheduling & Animating with Javascript</p>
+<p id="left">
+<button onclick="myMove()">setInterval</button>
+<button onclick="myMove1()">rAF</button>
+<button onclick="myMove2()">setTimeout</button>
+<button onclick="myMove3()">Promise</button>
+<button onclick="myMove4()">queueMt</button>
+</p> 
+
+<div id ="container">
+   <div id ="animate"></div>
+   <div id ="animate1"></div>
+   <div id ="animate2"></div>
+    <div id ="animate3"></div>
+      <div id ="animate4"></div>
+   
+</div>
+
+<script>
+function myMove() {
+  let elem = document.getElementById("animate");   
+  let pos = 0;
+  let a=Date.now();
+  let id = setInterval(frame, 1000/60);
+  function frame() {
+    if (pos == 350) {
+      clearInterval(id);
+      elem.innerHTML=`finished at ${(Date.now()-a)/1000}`;
+    } else {
+      pos++; 
+      elem.style.top = pos + "px"; 
+    
+    }
+
+  }
+}
+
+function myMove1() {
+  let elem = document.getElementById("animate1");   
+  let pos = 0;
+  let a=Date.now();
+  requestAnimationFrame(frame);
+  function frame() {
+    if (pos == 350) {
+     
+      elem.innerHTML=`finished at ${(Date.now()-a)/1000}`;
+    } else {
+      pos++; 
+      elem.style.top = pos + "px"; 
+     
+      requestAnimationFrame(frame);
+    }
+  }
+}
+
+function myMove2() {
+  let elem = document.getElementById("animate2");   
+  let pos = 0;
+  let a=Date.now();
+  setTimeout(frame, 1000/60);
+  function frame() {
+    if (pos == 350) {
+      clearTimeout(frame);
+      elem.innerHTML=`finished at ${(Date.now()-a)/1000}`;
+    } else {
+      pos++; 
+      elem.style.top = pos + "px"; 
+      setTimeout(frame, 1000/60);
+    }
+  }
+}
+
+function myMove3() {
+  let elem = document.getElementById("animate3");   
+  let pos = 0;
+  let a=Date.now();
+  Promise.resolve().then(frame);
+  function frame() {
+    if (pos == 350) {
+     
+      elem.innerHTML=`finished at ${(Date.now()-a)/1000}`;
+    } else {
+      pos++; 
+      elem.style.top = pos + "px"; 
+      Promise.resolve().then(frame);
+    }
+  }
+}
+
+function myMove4() {
+  let elem = document.getElementById("animate4");   
+  let pos = 0;
+  let a=Date.now();
+  queueMicrotask(frame);
+  function frame() {
+    if (pos == 350) {
+    
+      elem.innerHTML=`finished at ${(Date.now()-a)/1000}`;
+    } else {
+      pos++; 
+      elem.style.top = pos + "px"; 
+      queueMicrotask(frame);
+    }
+  }
+}
+
+</script>
+
+</body>
+</html>
